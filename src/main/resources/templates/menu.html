@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        body{
+            background-image: url('/imagen/fondo-signos-interrogacion_78370-2896.jpg');
+        }
+
+        /* Estilo adicional para resaltar la opción activa */
+        .navbar .nav-link.active {
+            background-color: #0d6efd;
+            color: white !important;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Mi Aplicación</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="link-preguntas">Tipo de Preguntas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="link-configuracion">Configuración</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenido dinámico -->
+<div class="container mt-4">
+    <div id="content">
+        <h2 class="text-center">¡Bienvenidos a mi aplicacion de preguntas tipo test!</h2>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#link-preguntas').click(function () {
+            cargarContenido('/pagina/preguntas');
+            activarOpcion(this);
+        });
+        $('#link-configuracion').click(function () {
+            cargarContenido('/pagina/configuracion');
+            activarOpcion(this);
+        });
+
+        // Función para cargar contenido dinámico
+        function cargarContenido(url) {
+            $.get(url, function (data) {
+                $('#content').html(data);
+            });
+        }
+
+        // Función para activar la opción seleccionada
+        function activarOpcion(link) {
+            $('.nav-link').removeClass('active');
+            $(link).addClass('active');
+        }
+    });
+</script>
+</body>
+</html>

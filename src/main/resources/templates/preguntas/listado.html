@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Listado de Preguntas</title>
+</head>
+<body>
+<h1>Listado de Preguntas</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Enunciado</th>
+    <th>Categoria</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="pregunta : ${preguntas}">
+    <td th:text="${pregunta.id}"></td>
+    <td th:text="${pregunta.enunciado}"></td>
+    <td th:text="${pregunta.categoria}"></td>
+  </tr>
+  </tbody>
+</table>
+<a href="/preguntas/nueva">Crear Nueva Pregunta</a>
+</body>
+</html>

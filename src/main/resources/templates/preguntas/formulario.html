@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Nueva Pregunta</title>
+</head>
+<body>
+<h1>Nueva Pregunta</h1>
+<form th:action="@{/preguntas}" th:object="${pregunta}" method="post">
+  <label for="enunciado">Enunciado:</label>
+  <input type="text" id="enunciado" th:field="*{enunciado}" />
+  <label for="categoria">Categoría:</label>
+  <input type="text" id="categoria" th:field="*{categoria}" />
+  <label for="respuestaCorrecta">Respuesta Correcta:</label>
+  <input type="checkbox" id="respuestaCorrecta" th:field="*{respuestaCorrecta}" />
+  <button type="submit">Guardar</button>
+</form>
+</body>
+</html>
