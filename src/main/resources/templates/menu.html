@@ -6,43 +6,73 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
-        body{
+        body {
             background-image: url('/imagen/fondo-signos-interrogacion_78370-2896.jpg');
-        }
 
+        }
     </style>
 </head>
 <body>
+
 <!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Mi Aplicación</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
+                <a class="nav-link" href="#" id="link-importar">Importar Preguntas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#" id="link-preguntas">Tipo de Preguntas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="link-configuracion">Configuración</a>
                 </li>
+
             </ul>
         </div>
     </div>
 </nav>
 
+<!-- Modal para importar preguntas desde JSON -->
+<div class="modal fade" id="importarModal" tabindex="-1" aria-labelledby="importarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="importarModalLabel">Importar Preguntas desde JSON</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/preguntas/importar" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="archivoJson" class="form-label">Selecciona un archivo JSON</label>
+                        <input type="file" class="form-control" id="archivoJson" name="archivoJson" accept=".json" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Contenido dinámico -->
 <div class="container mt-4">
     <div id="content">
-        <h2 class="text-center">¡Bienvenidos a mi aplicacion de preguntas tipo test!</h2>
+        <h2 class="text-center">¡Bienvenidos a mi aplicación de preguntas tipo test!</h2>
     </div>
-
 </div>
 
 <script>
     $(document).ready(function () {
+        // Navegación dinámica
         $('#link-preguntas').click(function () {
             cargarContenido('/pagina/preguntas');
             activarOpcion(this);
@@ -50,6 +80,11 @@
         $('#link-configuracion').click(function () {
             cargarContenido('/pagina/configuracion');
             activarOpcion(this);
+        });
+
+        // Mostrar el modal para importar preguntas
+        $('#link-importar').click(function () {
+            new bootstrap.Modal(document.getElementById('importarModal')).show();
         });
 
         // Función para cargar contenido dinámico

@@ -11,10 +11,14 @@ import java.util.List;
 public class PreguntaService {
 
     @Autowired
-    PreguntaRepository preguntasRepository;
+    PreguntaRepository preguntaRepository;
 
-    public List<Pregunta> obtenerTodos(){
-        return preguntasRepository.findAll();
+    public List<Pregunta> obtenerTodasLasPreguntas(){
+        return preguntaRepository.findAll();
+    }
+
+    public Pregunta guardar(Pregunta pregunta){
+        return preguntaRepository.save(pregunta);
     }
 
 
