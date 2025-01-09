@@ -9,16 +9,20 @@
   <h1>Listado de Preguntas</h1>
   <table class="table">
     <thead>
-    <tr>
-      <th>Texto de la Pregunta</th>
-      <th>Respuesta Correcta</th>
-      <th>Acciones</th>
-    </tr>
+        <tr>
+          <th>ID</th>
+          <th>Texto</th>
+          <th>Tipo de pregunta</th>
+          <th>Respuesta Correcta</th>
+          <th>Acciones</th>
+        </tr>
     </thead>
     <tbody>
     <tr th:each="pregunta : ${preguntas}">
+      <td th:text="${pregunta.id}"></td>
       <td th:text="${pregunta.texto}"></td>
-      <td th:text="${pregunta.respuestaCorrecta ? 'Verdadero' : 'Falso'}"></td>
+      <td th:text="${pregunta.tipoPregunta }"></td>
+      <td th:text="${pregunta.respuestaCorrecta}"></td>
       <td>
         <a th:href="@{/preguntas/{id}/editar(id=${pregunta.id})}" class="btn btn-warning">Editar</a>
         <a th:href="@{/preguntas/{id}/eliminar(id=${pregunta.id})}" class="btn btn-danger">Eliminar</a>

@@ -17,7 +17,7 @@ public class PreguntaService {
         return preguntaRepository.findAll();
     }
 
-    public Pregunta guardar(Pregunta pregunta){
+    public Pregunta guardarPregunta(Pregunta pregunta){
         return preguntaRepository.save(pregunta);
     }
 
